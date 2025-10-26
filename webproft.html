@@ -112,6 +112,32 @@
       backdrop-filter: blur(10px);
     }
 
+    nav a {
+        position: relative;
+        overflow: hidden;
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255,255,255,0.5);
+        border-radius: 50%;
+        transform: scale(0);
+        transition: transform 0.6s ease, opacity 0.8s;
+        opacity: 0;
+    }
+
+    nav a:active::after {
+        transform: scale(20);
+        opacity:1;
+        top: 50%;
+        left: 50%
+    }
+
     .logo {
       font-size: 1.6rem;
       font-weight: 700;
@@ -366,6 +392,96 @@
       color: #ddd;
       background: #0a0a15;
     }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(60px);
+        transition: all 0.8s ease;
+    }
+    .reveal.active {
+        opacity:1;
+        transform: translateY(0);
+    }
+    .skills-wrapper {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        background: rgba(255,255,255,0.7);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .skills-slider {
+        display: flex;
+        transition: transform 0.6s ease-in-out;
+        width: 200%;
+    }
+    .skill-level {
+        flex: 1 0 100%;
+        text-align: center;
+    }
+    .skill-level h3 {
+        color: #5a3ca7;
+        font-size: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+    .skill-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+    .skill {
+        width: 120px;
+        height: 130px;
+        border-radius: 16px;
+        background: #fff8fb;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+
+    .skill:hover {
+        transform: scale(1.08);
+        background: #f8ecff;
+        box-shadow: 0 8px 18px rgba(170,140,255,0.4);
+    }
+    .skill img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    .slider-buttons {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        pointer-events: none;
+        padding: 0 15px;
+    }
+    .slide-btn {
+        pointer-events: all;
+        background: #c0a3ff;
+        border: none;
+        color: white;
+        font-size: 24px;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+    }
+    .slide-btn:hover {
+        background: #9b7fff;
+        transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -388,13 +504,13 @@
   </nav>
 
   <section class="hero" id="home">
-    <h1>Transform Data Into Actionable Insights</h1>
-    <p>Data Science / Data Analyst Entry Level • Exploring AI• Automation</p>
+    <h1>I'm Elizabeth Feodora aspiring Data Science / Data Analyst Entry Level</h1>
+    <p>Machine Learning • Business Analyst• Automation</p>
     <a href="#projects" class="btn">View My Projects</a>
   </section>
 
   <!-- ===== ABOUT SECTION ===== -->
-  <section id="about">
+  <section id="about" class = 'reveal'>
     <div class="about-photo">
       <img src="picture.jpg" alt="Elizabeth Feodora">
     </div>
@@ -402,23 +518,91 @@
       <h2>About Me</h2>
       <p>Hello! I'm Elizabeth, a passionate Data Analyst and Machine Learning enthusiast focused on building intelligent systems that empower businesses and make data-driven decisions.</p>
 
-      <div class="skills-bubbles">
-        <div class="bubble" style="--i:1;">Python</div>
-        <div class="bubble" style="--i:2;">Pandas</div>
-        <div class="bubble" style="--i:3;">ML</div>
-        <div class="bubble" style="--i:4;">Tableau</div>
-        <div class="bubble" style="--i:5;">SQL</div>
-        <div class="bubble" style="--i:6;">NLP</div>
-        <div class="bubble" style="--i:7;">Visualization</div>
-        <div class="bubble" style="--i:8;">Machine Learning</div>
-        <div class="bubble" style="--i:8;">Deep Learning</div>
-        <div class="bubble" style="--i:8;">Computer Vision</div>
+<div class="skills-wrapper">
+  <div class="skills-slider">
+
+    <!-- Beginner Section -->
+    <div class="skill-level" id="beginner">
+      <h3>Beginner</h3>
+      <div class="skill-container">
+        <div class="skill">
+          <img src="yolo.jpg" alt="YOLO" />
+          <p>YOLO</p>
+        </div>
+        <div class="skill">
+          <img src="tf.png" alt="Tensorflow/Keras" />
+          <p>Tensorflow/Keras</p>
+        </div>
+        <div class="skill">
+          <img src="reinforcement-learning.png" alt="Reinforced" />
+          <p>Reinforced Learning</p>
+        </div>
+        <div class="skill">
+          <img src="langchain.png" alt="Langchain" />
+          <p>Langchain/Langgraph</p>
+        </div>
+        <div class="skill">
+          <img src="pyt.png" alt="PyTorch" />
+          <p>PyTorch</p>
+        </div>
       </div>
     </div>
+
+    <!-- Intermediate Section -->
+    <div class="skill-level" id="intermediate">
+      <h3>Intermediate</h3>
+      <div class="skill-container">
+        <div class="skill">
+          <img src="arima.png" alt="ARIMA" />
+          <p>ARIMA</p>
+        </div>
+        <div class="skill">
+          <img src="apriori.png" alt="Apriori" />
+          <p>Apriori</p>
+        </div>
+        <div class="skill">
+          <img src="nlp.png" alt="NLP" />
+          <p>NLP</p>
+        </div>
+        <div class="skill">
+          <img src="rag.png" alt="RAG" />
+          <p>RAG</p>
+        </div>
+        <div class="skill">
+          <img src="matplotlib.png" alt="Matplotlib" />
+          <p>Matplotlib</p>
+        </div>
+        <div class="skill">
+          <img src="tableau.png" alt="Tableau" />
+          <p>Tableau</p>
+        </div>
+        <div class="skill">
+          <img src="eda.jpg" alt="EDA" />
+          <p>EDA</p>
+        </div>
+        <div class="skill">
+          <img src="scikitlearn.png" alt="scikitlearn" />
+          <p>Scikit-learn</p>
+        </div>
+        <div class="skill">
+          <img src="pandas.png" alt="Pandas" />
+          <p>Pandas</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slider-buttons">
+    <button class="slide-btn" id="prevBtn">←</button>
+    <button class="slide-btn" id="nextBtn">→</button>
+  </div>
+</div>
+   
   </section>
 
   <!-- ===== PROJECT SECTION ===== -->
-  <section id="projects">
+  <section id="projects" class = 'reveal'>
     <h2>Projects</h2>
 
     <div class="project-slider">
@@ -520,6 +704,41 @@
   <footer>
     <p>© 2025 Elizabeth Feodora. All rights reserved.</p>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    window.addEventListener('scroll', () => {
+        for (let i = 0; i < reveals.length; i++){
+            const windowHeight = window.innerHeight;
+            const elementTop = reveals[i].getBoundingClientRect().top;
+            const elementVisible = 100;
+
+            if (elementTop < windowHeight - elementVisible){
+                reveals[i].classList.add('active');
+            } else {
+                reveals[i].classList.remove('active');
+            }
+        }
+    })
+
+    const slider = document.querySelector(".skills-slider");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    let slideIndex = 0;
+
+    nextBtn.addEventListener("click", () => {
+      slideIndex = (slideIndex + 1) % 2;
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+    });
+
+    prevBtn.addEventListener("click", () => {
+      slideIndex = (slideIndex - 1 + 2) % 2;
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+    });
+
+
+  </script>
 
 </body>
 </html>
